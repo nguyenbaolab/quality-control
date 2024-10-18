@@ -30,11 +30,11 @@ const Login: React.FC = () => {
           <h2>Please sign in</h2>
         </div>
         <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Email address</label>
+          <label htmlFor="InputEmail1">Email address</label>
           <input
             type="email"
             className="form-control" 
-            id="exampleInputEmail1"
+            id="InputEmail1"
             aria-describedby="emailHelp"
             placeholder="Enter email"
             value={email}
@@ -42,11 +42,11 @@ const Login: React.FC = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Password</label>
+          <label htmlFor="InputPassword">Password</label>
           <input
             type="password"
             className="form-control" 
-            id="exampleInputPassword1"
+            id="InputPassword"
             placeholder="Enter password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -56,9 +56,9 @@ const Login: React.FC = () => {
           <input
             type="checkbox"
             className="form-check-input" 
-            id="exampleCheck1"
+            id="Check"
           />
-          <label className="form-check-label" htmlFor="exampleCheck1">
+          <label className="form-check-label" htmlFor="Check">
             Remember me
           </label>
         </div>
