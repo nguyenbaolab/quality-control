@@ -1,0 +1,73 @@
+body {
+    background-color: #2c2f33; /* Dark background */
+    color: rgb(214, 214, 214); /* White text for contrast */
+    font-family: Arial, sans-serif; /* Font style */
+}
+
+.Login {
+    width: 300px; /* Set a fixed width for the login form */
+    margin: 100px auto; /* Center the form */
+    padding: 20px; /* Padding inside the form */
+    background-color: #23272a; /* Darker background for the form */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+}
+
+h1 {
+    font-size: 24px; /* Title font size */
+    text-align: center; /* Center the title */
+    margin-bottom: 20px; /* Space below the title */
+}
+
+h2 {
+    margin-bottom: 30px;
+    margin-top: 5px;
+}
+
+.form-group {
+    margin-bottom: 20px; /* Space between form elements */
+    margin-right: 23px;
+}
+
+label {
+    display: block; /* Labels on their own line */
+    margin-bottom: 8px; /* Space below labels */
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%; /* Full width inputs */
+    padding: 10px; /* Padding inside inputs */
+    border: 1px solid #bebdbd; /* Light border */
+    border-radius: 3px; /* Slightly rounded corners */
+    background-color: #2c2f33; /* Dark input background */
+    color: rgb(214, 214, 214); /* White text */
+}
+
+input[type="checkbox"] {
+    margin-right: 5px; /* Space between checkbox and label */
+    float: left;
+    width: 20px;
+}
+
+.btn {
+    width: 100%; /* Full width button */
+    padding: 10px; /* Padding inside the button */
+    border: none; /* No border */
+    border-radius: 3px; /* Rounded corners */
+    background-color: #007bff; /* Blue button */
+    color: rgb(214, 214, 214); /* White text */
+    font-size: 16px; /* Button font size */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+footer {
+    text-align: center; /* Center the footer */
+    margin-top: 20px; /* Space above the footer */
+    font-size: 12px; /* Smaller font size */
+    color: #aaa; /* Light grey color */
+}
