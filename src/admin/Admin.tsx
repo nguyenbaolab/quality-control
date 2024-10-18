@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Admin: React.FC = () => { // Specify that Admin is a React Functional Component
+const Admin: React.FC = () => { 
   return (
     <div>
       <h1>Welcome to the Admin Dashboard!</h1>

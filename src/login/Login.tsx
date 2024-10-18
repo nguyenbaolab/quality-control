@@ -1,11 +1,11 @@
-import React, { useState } from 'react'; // Import React and useState
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 const Login: React.FC = () => {
   const navigate = useNavigate(); // Create a navigate function
-  const [email, setEmail] = useState(''); // State for email
-  const [password, setPassword] = useState(''); // State for password
+  const [email, setEmail] = useState(''); 
+  const [password, setPassword] = useState(''); 
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevent default form submission behavior
@@ -16,10 +16,10 @@ const Login: React.FC = () => {
 
     // Check if the email and password match the hardcoded credentials
     if (email === adminEmail && password === adminPassword) {
-      alert('Logging in...'); // Alert for logging in
-      navigate('/admin'); // Navigate to the admin route
+      alert('Logging in...');
+      navigate('/admin'); 
     } else {
-      alert('Invalid email or password'); // Alert for invalid credentials
+      alert('Invalid email or password');
     }
   };
 

@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Admin: React.FC = () => { // Specify that Admin is a React Functional Component
+const Admin: React.FC = () => { 
   return (
     <div>
       <h1>Welcome to the Reviewer Dashboard!</h1>
-      {/* Additional admin content goes here */}
+      {/* Additional reviewer content goes here */}
     </div>
   );
 }
