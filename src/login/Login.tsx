@@ -11,7 +11,7 @@ const Login: React.FC = () => {
     event.preventDefault(); // Prevent default form submission behavior
 
     // Hardcoded admin credentials for demonstration purposes
-    const adminEmail = 'admin@example.com';
+    const adminEmail = 'admin';
     const adminPassword = 'admin123';
 
     // Check if the email and password match the hardcoded credentials
@@ -32,7 +32,7 @@ const Login: React.FC = () => {
         <div className="form-group">
           <label htmlFor="InputEmail1">Email address</label>
           <input
-            type="email"
+            type="user"
             className="form-control" 
             id="InputEmail1"
             aria-describedby="emailHelp"
