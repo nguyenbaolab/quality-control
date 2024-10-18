@@ -30,11 +30,11 @@ const Login: React.FC = () => {
           <h2>Please sign in</h2>
         </div>
         <div className="form-group">
-          <label htmlFor="InputEmail1">Email address</label>
+          <label htmlFor="InputUser">Email address</label>
           <input
             type="user"
             className="form-control" 
-            id="InputEmail1"
+            id="InputUser"
             aria-describedby="emailHelp"
             placeholder="Enter email"
             value={email}
