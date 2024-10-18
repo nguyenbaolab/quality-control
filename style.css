@@ -1,0 +1,142 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+
+.container {
+    background-color: #84BCF4;
+    padding: 20px;
+    max-width: 700px;
+    height: 500px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.inner-container {
+    background-color: #D0EEF2;
+    padding: 20px;
+    border-radius: 4px;
+    height: 380px;
+}
+
+
+h2 {
+    color: #333333;
+}
+
+
+.form-group {
+    margin-bottom: 15px;
+    width: 25%;
+}
+
+
+#businessLine {
+    width: 150%;
+}
+
+
+#city-form
+{
+    float: left;
+}
+
+
+#business-line {
+    float: left;
+    margin-left: 40px;
+}
+
+
+#time-start {
+    float: left;
+    clear: left;
+}
+
+
+#time-end {
+    float:left;
+    margin-left: 40px;
+}
+
+
+#max-results {
+    float: left;
+    margin-left: 40px;
+}
+
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+}
+
+
+button {
+    width: 100px;
+    padding: 10px;
+    background-color: #84BCF4;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+.button-fetch {
+    display: flex;
+    justify-content: center;
+    float: left;
+    clear: left;
+    margin-left: 41%;
+}
+
+
+button:hover {
+    background-color: #45a049;
+}
+
+
+.result-container {
+    float: left;
+    margin-top: 20px;
+}
+
+
+table {
+    width: 127%;
+    border-collapse: collapse;
+}
+
+
+table th, table td {
+    border: 1px solid #c4c4c4;
+    padding: 8px;
+}
+
+
+table th {
+    background-color: #55DA59;
+    color: black;
+}
+
+
+th {
+    text-align: left;
+}
