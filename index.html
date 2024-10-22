@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Information Retriever</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Company information retriever</h2>
+        <div class="inner-container">
+        <form id="companyForm">
+            <div class="form-group" id="city-form">
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" placeholder="Enter city" required>
+            </div>
+            <div class="form-group" id="business-line">
+                <label for="businessLine">Business line:</label>
+                <select id="businessLine" name="businessLine" required>
+                    <option value="">Select</option>
+                    <option value="55 Accommodation">IT Company</option>
+                    <option value="56 Food Service">Language Company</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <div class="form-group" id="time-start">
+                <label for="timeStart">Time start:</label>
+                <input type="date" id="timeStart" name="timeStart" required>
+            </div>
+            <div class="form-group" id="time-end">
+                <label for="timeEnd">Time end:</label>
+                <input type="date" id="timeEnd" name="timeEnd" required>
+            </div>
+            <div class="form-group" id="max-results">
+                <label for="maxResults">Max results:</label>
+                <input type="number" id="maxResults" name="maxResults" min="1" max="100" value="3" required>
+            </div>
+            <div class="button-fetch">
+            <button type="button" id="fetchBtn">Fetch</button>
+            </div>
+        </form>
+
+
+        <div class="result-container" id="resultContainer">
+            <table id="resultTable">
+                <thead>
+                    <tr>
+                        <th>Business ID</th>
+                        <th>Company Name</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody id="resultBody">
+                    <tr>
+                        <td>3449121-5</td>
+                        <td>TahkoLuxuryVillas Oy</td>
+                        <td>Rinnekatu 70100 KUOPIO</td>
+                    </tr>
+                    <tr>
+                        <td>3463763-2</td>
+                        <td>Sporttolio Oy</td>
+                        <td>Rautokannantie 70100 KUOPIO</td>
+                    </tr>
+                    <tr>
+                        <td>3464188-5</td>
+                        <td>Tiiminiekki Oy</td>
+                        <td>Kauppakatu 70100 KUOPIO</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
