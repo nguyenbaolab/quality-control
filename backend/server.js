@@ -5,6 +5,10 @@ const cors = require('cors');        // Import CORS để cho phép chia sẻ t�
 const app = express();               // Khởi tạo một ứng dụng Express
 app.use(cors());                     // Kích hoạt CORS để tránh lỗi chính sách CORS khi frontend và backend không cùng domain hoặc port
 
+// Middleware để xử lý JSON và form data từ các request
+app.use(express.json());             // Middleware để xử lý dữ liệu JSON từ body của POST request
+app.use(express.urlencoded({ extended: true }));  // Middleware để xử lý dữ liệu URL-encoded (dữ liệu từ form)
+
 // Tạo kết nối tới cơ sở dữ liệu MySQL
 const db = mysql.createConnection({
   host: "localhost",                // Máy chủ MySQL (ở đây là máy cục bộ - localhost)
@@ -18,6 +22,33 @@ app.get('/', (req, res) => {
   return res.json("From Backend Side");  // Trả về chuỗi "From Backend Side"
 })
 
+// Endpoint để xác thực thông tin đăng nhập
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;  // Nhận thông tin từ request body
+
+  // Câu lệnh SQL để kiểm tra thông tin đăng nhập
+  const sql = "SELECT * FROM users WHERE Username = ? AND Password = ?";
+  
+  // Thực hiện truy vấn với username và password nhận được
+  db.query(sql, [username, password], (err, result) => {
+    if (err) return res.status(500).json({ error: err });
+    
+    if (result.length > 0) {
+      // Nếu tìm thấy người dùng, trả về thông tin người dùng
+      return res.json(result[0]);  // Gửi thông tin người dùng đầu tiên
+    } else {
+      // Nếu không tìm thấy người dùng, trả về lỗi 401
+      return res.status(401).json({ error: "Invalid username or password" });
+    }
+  });
+});
+
+// Lắng nghe trên cổng 8081
+app.listen(8081, () => {
+  console.log("listening ...");        // In ra thông báo "listening ..." khi server bắt đầu hoạt động
+})
+
+
 // Endpoint để lấy dữ liệu từ bảng 'users'
 app.get('/users', (req, res) => {
   const sql = "SELECT * FROM users";   // Câu lệnh SQL để lấy toàn bộ dữ liệu từ bảng 'users'
@@ -29,7 +60,4 @@ app.get('/users', (req, res) => {
   })
 })
 
-// Lắng nghe trên cổng 8081
-app.listen(8081, () => {
-  console.log("listening ...");        // In ra thông báo "listening ..." khi server bắt đầu hoạt động
-})
+

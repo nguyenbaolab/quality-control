@@ -1,28 +1,39 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Import axios for making API requests
 import './Login.css';
 
 const Login: React.FC = () => {
-  const navigate = useNavigate(); // Create a navigate function
+  const navigate = useNavigate(); // Tạo hàm điều hướng
   const [user, setUser] = useState(''); 
   const [password, setPassword] = useState(''); 
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault(); // Prevent default form submission behavior
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); // Ngăn chặn hành vi mặc định của form
 
-    // Hardcoded admin credentials for demonstration purposes
-    const adminUser = 'admin';
-    const adminPassword = 'admin123';
+    try {
+      const response = await axios.post('http://localhost:8081/login', {
+        username: user, 
+        password: password 
+      });
 
-    // Check if the email and password match the hardcoded credentials
-    if (user === adminUser && password === adminPassword) 
-    {
-      alert('Logging in...');
-      navigate('/admin'); 
-    } 
-    else 
-    {
-      alert('Invalid user or password');
+      // Nếu đăng nhập thành công, điều hướng đến trang dựa trên vai trò
+      const { Username, Password } = response.data; // Lấy tên người dùng và mật khẩu từ phản hồi
+      if (Username === 'admin' && Password === 'admin123') {
+        alert('Logging in as Admin...');
+        navigate('/admin');
+      } else if (Username === 'builder' && Password === 'builder123') {
+        alert('Logging in as Builder...');
+        navigate('/builder');
+      } else if (Username === 'reviewer' && Password === 'reviewer123') {
+        alert('Logging in as Reviewer...');
+        navigate('/reviewer');
+      } else {
+        alert('Invalid username or password'); // Nếu mật khẩu không khớp
+      }
+    } catch (err) {
+      // Xử lý lỗi đăng nhập
+      alert('Invalid username or password');
     }
   };
 
@@ -33,7 +44,7 @@ const Login: React.FC = () => {
           <h2>Please Log in</h2>
         </div>
         <div className="form-group">
-          <label htmlFor="InputUser">User Name</label>
+          <label htmlFor="InputUser">Username</label>
           <input
             type="user"
             className="form-control" 
