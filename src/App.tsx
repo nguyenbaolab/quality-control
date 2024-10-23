@@ -4,6 +4,7 @@ import Login from './login/Login';
 import Admin from './admin/Admin';
 import Reviewer from './reviewer/Reviewer';
 import Builder from './builder/Builder';
+import LandingPage from './LandingPage';
 import { TaskProvider } from './TaskContext'; // Import TaskProvider để quản lý trạng thái tác vụ
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
         {/* Main */}
         <main className="flex-fill">
           <Routes>
+            <Route path="/" element={<Navigate to="/landingpage" replace />} /> {/* Chuyển hướng về LandingPage */}
+            <Route path="/landingpage" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/reviewer" element={<Reviewer />} />

@@ -4,22 +4,25 @@ import './Login.css';
 
 const Login: React.FC = () => {
   const navigate = useNavigate(); // Create a navigate function
-  const [email, setEmail] = useState(''); 
+  const [user, setUser] = useState(''); 
   const [password, setPassword] = useState(''); 
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevent default form submission behavior
 
     // Hardcoded admin credentials for demonstration purposes
-    const adminEmail = 'admin';
+    const adminUser = 'admin';
     const adminPassword = 'admin123';
 
     // Check if the email and password match the hardcoded credentials
-    if (email === adminEmail && password === adminPassword) {
+    if (user === adminUser && password === adminPassword) 
+    {
       alert('Logging in...');
       navigate('/admin'); 
-    } else {
-      alert('Invalid email or password');
+    } 
+    else 
+    {
+      alert('Invalid user or password');
     }
   };
 
@@ -27,18 +30,18 @@ const Login: React.FC = () => {
     <div className="Login">
       <form onSubmit={handleSubmit}>
         <div className="Header">
-          <h2>Please sign in</h2>
+          <h2>Please Log in</h2>
         </div>
         <div className="form-group">
-          <label htmlFor="InputUser">Email address</label>
+          <label htmlFor="InputUser">User Name</label>
           <input
             type="user"
             className="form-control" 
             id="InputUser"
             aria-describedby="emailHelp"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter User"
+            value={user}
+            onChange={(e) => setUser(e.target.value)}
           />
         </div>
         <div className="form-group">
@@ -62,7 +65,7 @@ const Login: React.FC = () => {
             Remember me
           </label>
         </div>
-        <button type="submit" className="btn btn-primary">Sign in</button>
+        <button type="submit" className="btn btn-primary">Log in</button>
       </form>
     </div>
   );

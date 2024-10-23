@@ -41,7 +41,8 @@ const Admin: React.FC = () => {
   const adjustReviewerTasks = (index: number, amount: number) => {
     setReviewers((prevReviewers) => {
       return prevReviewers.map((reviewer, i) => {
-        if (i === index && reviewer.waitingTasks >= amount) {
+        if (i === index && reviewer.waitingTasks >= amount) 
+        {
           return {
             ...reviewer,
             waitingTasks: reviewer.waitingTasks - amount,
@@ -57,7 +58,8 @@ const Admin: React.FC = () => {
   const adjustBuilderTasks = (index: number, amount: number) => {
     setBuilders((prevBuilders) => {
       return prevBuilders.map((builder, i) => {
-        if (i === index && builder.waitingTasks >= amount) {
+        if (i === index && builder.waitingTasks >= amount) 
+        {
           return {
             ...builder,
             waitingTasks: builder.waitingTasks - amount,
