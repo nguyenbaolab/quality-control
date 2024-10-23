@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import { useTaskContext } from '../TaskContext';
-import './Reviewer.css'
 
 const Reviewer: React.FC = () => {
   const { reviewers, adjustReviewerTasks } = useTaskContext();
