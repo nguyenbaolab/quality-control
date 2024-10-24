@@ -44,21 +44,18 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { keyframes } from '@mui/system';
+import './Builder.css'; // Import CSS file
 
-const rainbowAnimation = keyframes`
-  0% { background-color: rgba(255, 0, 0, 0.2); } /* Red */
-  14% { background-color: rgba(255, 165, 0, 0.2); } /* Orange */
-  28% { background-color: rgba(255, 255, 0, 0.2); } /* Yellow */
-  42% { background-color: rgba(0, 128, 0, 0.2); } /* Green */
-  57% { background-color: rgba(0, 0, 255, 0.2); } /* Blue */
-  71% { background-color: rgba(75, 0, 130, 0.2); } /* Indigo */
-  85% { background-color: rgba(238, 130, 238, 0.2); } /* Violet */
-  100% { background-color: rgba(255, 0, 0, 0.2); } /* Back to Red */
+const blinkAnimation = keyframes`
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
 `;
 
 const WebsiteBuilder = () => {
   const [completedTasks, setCompletedTasks] = useState(5);
   const [pendingTasks, setPendingTasks] = useState(6);
+  const [failTasks, setFailTasks] = useState(2);
   const [message, setMessage] = useState('');
   const [photos, setPhotos] = useState<string[]>([]);
   const [videos, setVideos] = useState<string[]>([]);
@@ -80,6 +77,11 @@ const WebsiteBuilder = () => {
     'Pending task 4',
     'Pending task 5',
     'Pending task 6',
+  ];
+  
+  const failTaskDetails = [
+    'Fail task 1',
+    'Fail task 2',
   ];
 
   const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -129,7 +131,6 @@ const WebsiteBuilder = () => {
       sx={{
         padding: 4,
         minHeight: '100vh',
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,224,1) 50%)',
         position: 'relative',
       }}
     >
@@ -137,13 +138,13 @@ const WebsiteBuilder = () => {
         WEBSITE BUILDER
       </Typography>
 
-      <Typography variant="h5" align="center" color="red" gutterBottom>
+      <Typography variant="h5" align="center" gutterBottom>
         Summary tasks
       </Typography>
 
       <Grid container spacing={2} justifyContent="center" sx={{ marginBottom: 4 }}>
         {/* Completed Task Section */}
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={4}>
           <Card>
             <CardContent>
               <Typography variant="h6">Completed task</Typography>
@@ -161,14 +162,14 @@ const WebsiteBuilder = () => {
                   </List>
                 </AccordionDetails>
               </Accordion>
-              <Typography variant="h4">{completedTasks}</Typography>
+              <Typography variant="h4">{completedTasks} 😊</Typography>
             </CardContent>
           </Card>
         </Grid>
 
         {/* Pending Task Section with rainbow animation */}
-        <Grid item xs={12} sm={6}>
-          <Card sx={{ animation: `${rainbowAnimation} 3s infinite` }}>
+        <Grid item xs={12} sm={4}>
+          <Card>
             <CardContent>
               <Typography variant="h6">Pending task</Typography>
               <Accordion>
@@ -185,7 +186,33 @@ const WebsiteBuilder = () => {
                   </List>
                 </AccordionDetails>
               </Accordion>
-              <Typography variant="h4">{pendingTasks}</Typography>
+              <Typography variant="h4" sx={{ animation: `${blinkAnimation} 1s infinite` }}>
+                {pendingTasks} 😟
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        {/* Fail Task Section */}
+        <Grid item xs={12} sm={4}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6">Fail task</Typography>
+              <Accordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <Typography>More detail</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <List>
+                    {failTaskDetails.map((task, index) => (
+                      <ListItem key={index}>
+                        <ListItemText primary={task} />
+                      </ListItem>
+                    ))}
+                  </List>
+                </AccordionDetails>
+              </Accordion>
+              <Typography variant="h4">{failTasks} 😞</Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -215,10 +242,9 @@ const WebsiteBuilder = () => {
             sx={{
               border: '1px solid #ccc',
               borderRadius: '8px',
-              padding: 2,
             }}
           >
-            <Typography variant="h6" align="center" sx={{ color: 'black', fontWeight: 'bold' }}>
+            <Typography variant="h6" align="center" sx={{ color: 'white', fontWeight: 'bold' }}>
               Uploaded Photos
             </Typography>
             <List>
@@ -254,10 +280,9 @@ const WebsiteBuilder = () => {
             sx={{
               border: '1px solid #ccc',
               borderRadius: '8px',
-              padding: 2,
             }}
           >
-            <Typography variant="h6" align="center" sx={{ color: 'black', fontWeight: 'bold' }}>
+            <Typography variant="h6" align="center" sx={{ color: 'white', fontWeight: 'bold' }}>
               Uploaded Videos
             </Typography>
             <List>
@@ -282,7 +307,7 @@ const WebsiteBuilder = () => {
             rows={4}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            sx={{ marginBottom: 2 }}
+            className="message-input"
           />
         </Grid>
       </Grid>
@@ -297,5 +322,3 @@ const WebsiteBuilder = () => {
 };
 
 export default WebsiteBuilder;
-
-
