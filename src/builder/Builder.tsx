@@ -1,31 +1,3 @@
-// import React from 'react';
-// import { Button } from '@mui/material';
-// import { useTaskContext } from '../TaskContext';
-// import './Builder.css';
-
-// const Builder: React.FC = () => {
-//   const { builders, adjustBuilderTasks } = useTaskContext();
-
-//   return (
-//     <div>
-//       <h3>Builder Details</h3>
-//       <p>Name: {builders[0].name}</p>
-//       <p>Waiting Tasks: {builders[0].waitingTasks}</p>
-//       <p>Completed Tasks: {builders[0].completedTasks}</p>
-//       <Button
-//         variant="contained"
-//         color="primary"
-//         disabled={builders[0].waitingTasks === 0}
-//         onClick={() => adjustBuilderTasks(0, 1)}
-//       >
-//         Complete 1 Task
-//       </Button>
-//     </div>
-//   );
-// };
-
-// export default Builder;
-
 import React, { useState } from 'react';
 import {
   Box,
@@ -45,6 +17,7 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { keyframes } from '@mui/system';
 import './Builder.css'; // Import CSS file
+import axios from 'axios';
 
 const blinkAnimation = keyframes`
   0% { opacity: 1; }
@@ -84,43 +57,66 @@ const WebsiteBuilder = () => {
     'Fail task 2',
   ];
 
-  const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const files = Array.from(event.target.files);
-      const validFiles: string[] = [];
+      const formData = new FormData();
       let newErrorMessage = '';
-
+  
       files.forEach((file) => {
         if (file.size > 50 * 1024 * 1024) {
           newErrorMessage += `${file.name} exceeds the 50MB limit.\n`;
         } else {
-          validFiles.push(URL.createObjectURL(file));
+          formData.append('image', file); // 'image' là key mà backend sẽ nhận
         }
       });
-
-      setPhotos((prevPhotos) => prevPhotos.concat(validFiles));
+  
+      try {
+        const response = await axios.post('http://localhost:3001/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        console.log(response.data);
+        setPhotos((prevPhotos) => prevPhotos.concat(response.data.photo.filename));
+      } catch (error) {
+        console.error('Error uploading image:', error);
+      }
+  
       setErrorMessage(newErrorMessage);
     }
   };
 
-  const handleVideoUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleVideoUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const files = Array.from(event.target.files);
-      const validVideos: string[] = [];
+      const formData = new FormData();
       let newVideoErrorMessage = '';
-
+  
       files.forEach((file) => {
         if (file.size > 50 * 1024 * 1024) {
           newVideoErrorMessage += `${file.name} exceeds the 50MB limit.\n`;
         } else {
-          validVideos.push(URL.createObjectURL(file));
+          formData.append('video', file); // 'video' là key mà backend sẽ nhận
         }
       });
-
-      setVideos((prevVideos) => prevVideos.concat(validVideos));
+  
+      try {
+        const response = await axios.post('http://localhost:3001/upload-video', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        console.log(response.data);
+        setVideos((prevVideos) => prevVideos.concat(response.data.video.filename));
+      } catch (error) {
+        console.error('Error uploading video:', error);
+      }
+  
       setVideoErrorMessage(newVideoErrorMessage);
     }
   };
+  
 
   const handleSubmit = () => {
     console.log('Uploaded message:', message);
