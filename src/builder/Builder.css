@@ -1,0 +1,13 @@
+.message-input {
+    background-color: #f0f0f0; /* Thay đổi màu nền của ô nhập liệu */
+    border: 1px solid #ccc; /* Thay đổi màu viền */
+    border-radius: 4px; /* Thay đổi đường viền */
+    padding: 10px; /* Thêm khoảng cách bên trong */
+  }
+  
+  .uploaded-photos,
+  .uploaded-videos {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+  }
