@@ -27,14 +27,14 @@ app.post('/login', (req, res) => {
   const { username, password } = req.body;  // Nhận thông tin từ request body
 
   // Câu lệnh SQL để kiểm tra thông tin đăng nhập
-  const sql = "SELECT * FROM users WHERE Username = ? AND Password = ?";
+  const sql = "SELECT Name FROM users WHERE Username = ? AND Password = ?";
   
   // Thực hiện truy vấn với username và password nhận được
-  db.query(sql, [username, password], (err, result) => {
+  db.query(sql, [username, password], (err, result) => { //So sánh để xác thực người dùng
     if (err) return res.status(500).json({ error: err });
     
     if (result.length > 0) {
-      // Nếu tìm thấy người dùng, trả về thông tin người dùng
+      // Nếu tìm thấy người dùng, trả về thông tin Name cho frondend
       return res.json(result[0]);  // Gửi thông tin người dùng đầu tiên
     } else {
       // Nếu không tìm thấy người dùng, trả về lỗi 401

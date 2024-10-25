@@ -12,28 +12,27 @@ const Login: React.FC = () => {
     event.preventDefault(); // Ngăn chặn hành vi mặc định của form
 
     try {
-      const response = await axios.post('http://localhost:8081/login', {
+      const response = await axios.post('http://localhost:8081/login', { //Gửi thông tin đăng nhập đến backend
         username: user, 
         password: password 
       });
 
       // Nếu đăng nhập thành công, điều hướng đến trang dựa trên vai trò
-      const { Username, Password } = response.data; // Lấy tên người dùng và mật khẩu từ phản hồi
-      if (Username === 'admin' && Password === 'admin123') {
-        alert('Logging in as Admin...');
-        navigate('/admin');
-      } else if (Username === 'builder' && Password === 'builder123') {
-        alert('Logging in as Builder...');
-        navigate('/builder');
-      } else if (Username === 'reviewer' && Password === 'reviewer123') {
-        alert('Logging in as Reviewer...');
-        navigate('/reviewer');
-      } else {
-        alert('Invalid username or password'); // Nếu mật khẩu không khớp
-      }
+      const { Name } = response.data; // Lấy tên người dùng từ phản hồi rồi so sánh để đăng nhập
+        if (Name === 'Admin') {
+            alert('Logging in as Admin...');
+            navigate('/admin');
+        } else if (Name === 'Builder') {
+            alert('Logging in as Builder...');
+            navigate('/builder');
+        } else if (Name === 'Reviewer') {
+            alert('Logging in as Reviewer...');
+            navigate('/reviewer');
+        } else {
+            alert('Invalid username or password');
+        }
     } catch (err) {
-      // Xử lý lỗi đăng nhập
-      alert('Invalid username or password');
+        alert('Invalid username or password');
     }
   };
 
